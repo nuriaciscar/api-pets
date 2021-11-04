@@ -22,6 +22,7 @@ const initializeServer = (port) => {
 };
 
 app.use(morgan("dev"));
+app.use(express.json());
 app.use((req, res, next) => {
   debug("Soy el segundo middleware");
   next();
