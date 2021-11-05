@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const connectDB = () =>
   new Promise((resolve, reject) => {
-    mongoose.connect("sdf", (error) => {
+    mongoose.connect(process.env.MONGODB_STRING, (error) => {
       if (error) {
         debug(chalk.red("No se ha podido iniciar la base de datos."));
         debug(chalk.red(error.message));
