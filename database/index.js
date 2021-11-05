@@ -3,11 +3,18 @@ const debug = require("debug")("pets:database");
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB_STRING, (error) => {
-  if (error) {
-    debug(chalk.red("No se ha podido iniciar la base de datos."));
-    debug(chalk.red(error.message));
-    return;
-  }
-  debug(chalk.green("Conectado a la base de datos"));
-});
+const connectDB = () =>
+  new Promise((resolve, reject) => {
+    mongoose.connect("sdf", (error) => {
+      if (error) {
+        debug(chalk.red("No se ha podido iniciar la base de datos."));
+        debug(chalk.red(error.message));
+        reject();
+        return;
+      }
+      debug(chalk.green("Conectado a la base de datos"));
+      resolve();
+    });
+  });
+
+module.exports = connectDB;
